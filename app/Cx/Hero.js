@@ -1,72 +1,46 @@
-"use client";
-
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { FaPlay } from "react-icons/fa";
+
+const HEADLINE =
+  "THE FIRST FUTURISTIC CITY THAT PROVIDES EVERYTHING YOU NEED";
+
+const BODY =
+  "— 1 TOOL AND 1 FOOD DIET — FOR SELF-SUFFICIENCY, HEALTH, EDUCATION, SAFETY AND FUN WITH THE HEALTHIEST, TASTIEST MOSTLY PROTEIN FOODS AND HI-TECH AI-INDUCED PRODUCTS FOR YOUR EVERY NEED.";
 
 export default function Hero() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const v = videoRef.current;
-    if (v) {
-      v.pause();
-      v.currentTime = 0;
-    }
-  }, []);
-
-  const handlePlay = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    setIsPlaying(true);
-    v.play().catch(() => setIsPlaying(false));
-  };
-
-  const handleEnded = () => {
-    const v = videoRef.current;
-    if (v) v.currentTime = 0;
-    setIsPlaying(false);
-  };
-
   return (
-    <section className="relative flex flex-1 w-full items-center justify-center overflow-hidden bg-black">
-      <video
-        ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
-        src="/video.mp4"
-        playsInline
-        preload="metadata"
-        controls={isPlaying}
-        onEnded={handleEnded}
+    <section className="relative flex min-h-screen flex-1 flex-col overflow-hidden bg-black">
+      <Image
+        src="/bg.png"
+        alt=""
+        fill
+        priority
+        className="object-cover object-center"
+        sizes="100vw"
+      />
+      <div
+        className="absolute inset-0 bg-linear-to-b from-black/75 via-black/35 to-black/80"
+        aria-hidden
       />
 
-      <div className="pointer-events-none absolute top-5 left-1/2 z-50 -translate-x-1/2 sm:top-7">
+      <div className="pointer-events-none absolute left-5 top-5 z-50 sm:left-8 sm:top-8">
         <Image
           src="/logo.png"
-          alt="Cityopia Motivational Lifestyle"
-          width={220}
-          height={220}
+          alt="Motivational Lifestyle"
+          width={280}
+          height={280}
           priority
-          className="h-20 w-auto sm:h-24 md:h-28"
+          className="h-20 w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] sm:h-24 md:h-28 lg:h-32"
         />
       </div>
 
-      {!isPlaying && (
-        <>
-          <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
-
-          <button
-            type="button"
-            onClick={handlePlay}
-            className="relative z-10 inline-flex cursor-pointer items-center gap-2.5 rounded-full bg-white px-6 py-3 text-sm font-normal text-neutral-900 shadow-lg transition duration-200 ease-out hover:scale-105 hover:bg-neutral-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:px-8 sm:py-3.5 sm:text-base"
-            aria-label="Play video"
-          >
-            <FaPlay className="size-3.5 shrink-0 text-red-600 sm:size-4" aria-hidden />
-            Play video
-          </button>
-        </>
-      )}
+      <div className="relative z-10 flex flex-1 flex-col justify-center px-6 pb-14 pt-28 sm:px-10 md:pt-32 lg:ml-auto lg:max-w-[min(36rem,52%)] lg:items-start lg:px-14 lg:pr-16 xl:max-w-[min(40rem,48%)] xl:pr-20">
+        <h1 className="mb-5 max-w-xl font-sans text-2xl font-bold uppercase leading-[1.15] tracking-[0.04em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-5xl xl:leading-[1.1]">
+          {HEADLINE}
+        </h1>
+        <p className="max-w-xl font-sans text-xs font-normal uppercase leading-relaxed tracking-[0.06em] text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)] sm:text-sm md:text-[0.9375rem] md:leading-relaxed">
+          {BODY}
+        </p>
+      </div>
     </section>
   );
 }

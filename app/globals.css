@@ -24,3 +24,17 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes slow-zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(4);
+  }
+}
+
+.animate-slow-zoom {
+  transform-origin: 64% 54%;
+  animation: slow-zoom 2.5s ease-in-out forwards;
+}

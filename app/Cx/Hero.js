@@ -22,15 +22,22 @@ export default function Hero() {
         aria-hidden
       />
 
-      <div className="pointer-events-none absolute left-5 top-5 z-50 sm:left-8 sm:top-8">
-        <Image
-          src="/logo.png"
-          alt="Motivational Lifestyle"
-          width={280}
-          height={280}
-          priority
-          className="h-20 w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] sm:h-24 md:h-28 lg:h-32"
-        />
+      <div className="absolute left-5 top-5 z-50 sm:left-8 sm:top-8">
+        <a
+          href="https://motivational-lifestyle.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block transition-opacity hover:opacity-90"
+        >
+          <Image
+            src="/logo.png"
+            alt="Motivational Lifestyle"
+            width={280}
+            height={280}
+            priority
+            className="h-20 w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] sm:h-24 md:h-28 lg:h-32"
+          />
+        </a>
       </div>
 
       <div className="relative z-10 flex flex-1 flex-col justify-center px-6 pb-14 pt-28 sm:px-10 md:pt-32 lg:ml-auto lg:max-w-[min(36rem,52%)] lg:items-start lg:px-14 lg:pr-16 xl:max-w-[min(40rem,48%)] xl:pr-20">

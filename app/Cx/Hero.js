@@ -17,11 +17,6 @@ export default function Hero() {
         className="object-cover object-center"
         sizes="100vw"
       />
-      <div
-        className="absolute inset-0 bg-linear-to-b from-black/75 via-black/35 to-black/80"
-        aria-hidden
-      />
-
       <div className="absolute left-5 top-5 z-50 sm:left-8 sm:top-8">
         <a
           href="https://motivational-lifestyle.vercel.app/"

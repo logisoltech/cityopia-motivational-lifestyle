@@ -30,7 +30,7 @@ export default function Hero() {
             width={280}
             height={280}
             priority
-            className="h-20 w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] sm:h-24 md:h-28 lg:h-32"
+            className="h-24 w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] sm:h-28 md:h-32 lg:h-36"
           />
         </a>
       </div>

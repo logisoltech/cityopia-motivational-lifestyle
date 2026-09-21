@@ -1,9 +1,37 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const BODY =
   "HUMANS SURVIVE BASED ON FOOD AND SHELTER. A BUILDING IS THE MOST ADVANCED PRODUCT IN SOCIETY PROTECTING US FROM NATURE. WHEN WALKING DOWN A STREET PEOPLE DECIDE ON THEIR BUILDINGS LIKE A SHOPPING AISLE.";
 
+const CONTACT_TEXT =
+  "M.D. MOTIVATIONAL ENTERPRISES LLC – LOCATION   56 ST. NY. NY. 10019";
+
+const BUTTON_CLASS =
+  "cursor-pointer rounded-md bg-linear-to-b from-[#f5e6a8] via-[#d4af37] to-[#b8860b] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.06em] text-black shadow-[0_4px_14px_rgba(0,0,0,0.45)] transition duration-200 hover:from-[#fff1b8] hover:via-[#e0c04a] hover:to-[#c9971a] hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f5e6a8] sm:px-5 sm:py-3 sm:text-sm";
+
 export default function Hero() {
+  const [contactOpen, setContactOpen] = useState(false);
+
+  useEffect(() => {
+    if (!contactOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setContactOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [contactOpen]);
+
   return (
     <section className="relative flex min-h-screen flex-1 flex-col overflow-hidden bg-black">
       <Image
@@ -50,7 +78,68 @@ export default function Hero() {
         <p className="max-w-xl font-sans text-xs font-normal uppercase leading-relaxed tracking-[0.06em] text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.85)] sm:text-sm md:text-[0.9375rem] md:leading-relaxed">
           {BODY}
         </p>
+
+        <div className="mt-6 flex max-w-xl flex-wrap gap-2.5 sm:mt-8 sm:gap-3">
+          <button type="button" className={BUTTON_CLASS}>
+            Invest/Donate
+          </button>
+          <button type="button" className={BUTTON_CLASS}>
+            MD Crypto
+          </button>
+          <button
+            type="button"
+            className={BUTTON_CLASS}
+            onClick={() => setContactOpen(true)}
+          >
+            Contact
+          </button>
+          <button type="button" className={BUTTON_CLASS}>
+            Financing Available
+          </button>
+        </div>
       </div>
+
+      {contactOpen && (
+        <div
+          className="fixed inset-0 z-100 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="contact-modal-title"
+          onClick={() => setContactOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-md rounded-xl bg-neutral-950 px-6 py-8 shadow-2xl ring-1 ring-[#d4af37]/40 sm:px-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setContactOpen(false)}
+              className="absolute top-3 right-3 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-white/70 transition hover:bg-white/10 hover:text-white"
+              aria-label="Close contact"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
+
+            <p
+              id="contact-modal-title"
+              className="pr-8 text-center font-sans text-sm font-semibold uppercase leading-relaxed tracking-[0.06em] text-white sm:text-base"
+            >
+              {CONTACT_TEXT}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

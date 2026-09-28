@@ -71,7 +71,7 @@ export default function Hero() {
         </div>
 
         <h1 className="mb-5 max-w-xl font-sans text-2xl font-bold uppercase leading-[1.15] tracking-[0.04em] text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-5xl xl:leading-[1.1]">
-          MD1 Tool,
+          <span className="whitespace-nowrap">MD1 Printer, Tool,</span>
           <br /> MD1 Diet,
           <br /> MD1 Material
         </h1>
